@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Acceso Restringido</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    *{
+      box-sizing:border-box;
+      font-family:'Segoe UI',Tahoma,sans-serif;
+    }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      background:radial-gradient(circle at top,#ff8c00 0%,#000 55%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+    }
+
+    .login-box{
+      width:100%;
+      max-width:420px;
+      background:rgba(0,0,0,.85);
+      border:2px solid #ff8c00;
+      border-radius:18px;
+      padding:32px;
+      box-shadow:0 0 40px rgba(255,140,0,.35);
+      animation:glow 2s infinite alternate;
+    }
+
+    @keyframes glow{
+      from{box-shadow:0 0 20px rgba(255,140,0,.3)}
+      to{box-shadow:0 0 45px rgba(255,140,0,.6)}
+    }
+
+    h1{
+      text-align:center;
+      margin-bottom:6px;
+      color:#ff8c00;
+      letter-spacing:1px;
+    }
+
+    .subtitle{
+      text-align:center;
+      font-size:.9rem;
+      opacity:.85;
+      margin-bottom:25px;
+    }
+
+    label{
+      font-size:.85rem;
+      opacity:.9;
+    }
+
+    input[type=email],
+    input[type=password],
+    input[type=file]{
+      width:100%;
+      margin-top:6px;
+      margin-bottom:18px;
+      padding:12px;
+      border-radius:10px;
+      border:1px solid #333;
+      background:#0e0e0e;
+      color:#fff;
+    }
+
+    input[type=file]::-webkit-file-upload-button{
+      background:#ff8c00;
+      color:#000;
+      border:none;
+      padding:8px 12px;
+      border-radius:6px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    button{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(135deg,#ff8c00,#ffb347);
+      color:#000;
+      font-size:1rem;
+      font-weight:bold;
+      cursor:pointer;
+      transition:.25s;
+    }
+
+    button:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 25px rgba(255,140,0,.45);
+    }
+
+    .error{
+      display:none;
+      margin-top:18px;
+      text-align:center;
+      color:#ff5252;
+      font-weight:bold;
+      animation:shake .3s linear 2;
+    }
+
+    @keyframes shake{
+      0%{transform:translateX(0)}
+      25%{transform:translateX(-4px)}
+      50%{transform:translateX(4px)}
+      75%{transform:translateX(-4px)}
+      100%{transform:translateX(0)}
+    }
+
+    .footer{
+      margin-top:22px;
+      text-align:center;
+      font-size:.75rem;
+      opacity:.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h1>ACCESO</h1>
+    <div class="subtitle">Zona privada · Autorización requerida</div>
+
+    <form id="loginForm">
+      <label>Correo electrónico</label>
+      <input type="email" placeholder="usuario@correo.com" required>
+
+      <label>Contraseña</label>
+      <input type="password" placeholder="••••••••" required>
+
+      <label>Identificación visual</label>
+      <div class="image-box">
+        <img src="foto.jpg" alt="Imagen de referencia">
+      </div>
+
+      <button type="submit">INGRESAR</button>
+    </form>
+
+    <div class="error" id="errorMsg">
+      ❌ Acceso denegado. Credenciales incorrectas.
+    </div>
+
+    <div class="footer">
+      Sistema protegido · Todos los intentos son monitoreados
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const error = document.getElementById('errorMsg');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      error.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
